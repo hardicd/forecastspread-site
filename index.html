@@ -48,7 +48,7 @@ header span { font: 1.15rem/1 var(--display); letter-spacing: .04em; }
 .btn[aria-disabled="true"] { background: var(--panel); color: var(--dim); box-shadow: 4px 4px 0 var(--panel); outline: 1px solid var(--frame); pointer-events: none; }
 .cta small { color: var(--dim); font-size: .9rem; }
 .phone { justify-self: center; width: min(100%, 300px); border: 3px solid var(--frame); border-radius: 34px; overflow: hidden; background: var(--panel); box-shadow: 10px 10px 0 rgba(0,0,0,.35); }
-.phone img { display: block; width: 100%; }
+.phone img { display: block; width: 100%; height: auto; }
 
 .alerts { padding-block: 24px 72px; }
 .alerts h2, .features h2, .watch h2, .beta h2 { font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--display); margin: 10px 0 10px; text-wrap: balance; }
@@ -68,7 +68,7 @@ header span { font: 1.15rem/1 var(--display); letter-spacing: .04em; }
 .spread i { display: block; height: 8px; background: var(--agree); }
 
 .watch { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: 40px; align-items: center; padding-block: 8px 72px; }
-.watch img { width: 100%; max-width: 240px; display: block; justify-self: center; border: 3px solid var(--frame); border-radius: 44px; }
+.watch img { width: 100%; max-width: 240px; height: auto; display: block; justify-self: center; border: 3px solid var(--frame); border-radius: 44px; }
 .watch p { color: var(--dim); max-width: 36em; margin: 0; }
 
 .beta { border-top: 2px dashed var(--frame); padding-block: 56px 40px; display: grid; gap: 16px; justify-items: start; }
@@ -150,7 +150,7 @@ footer .grow { flex: 1 1 auto; }
   </section>
 
   <section class="watch">
-    <img src="assets/shot-watch.jpg" alt="Apple Watch showing 66 degrees in Boulder, models 68 over 64, 9 of 10 agree, and a severe thunderstorm warning" width="422" height="514" loading="lazy">
+    <img src="assets/shot-watch.jpg" alt="Apple Watch in the rain showing 66 degrees in Boulder, models 68 over 64, 9 of 10 agree" width="422" height="514" loading="lazy">
     <div>
       <div class="label">Apple Watch</div>
       <h2>A full app on your wrist.</h2>
