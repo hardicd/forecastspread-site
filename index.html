@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/icon.png">
+<title>ForecastSpread</title>
+<meta name="description" content="A pixel-art weather app for iPhone and Apple Watch. Your town reacts to the sky; underneath, up to 17 forecast models compared side by side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: night-sky page in the app's own navy; hero pairs the pitch with a real screenshot, then a strip of live notification art, three feature columns, watch, beta band. Single dark look on purpose: it is the app's look. */
+@font-face { font-family: "ForecastPixel Display"; src: url("assets/ForecastPixel-Display.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "ForecastPixel"; src: url("assets/ForecastPixel-Regular.ttf") format("truetype"); font-display: swap; }
+:root {
+  color-scheme: dark;
+  --sky: #10142e;        /* page ground, the app's night navy */
+  --panel: #181d40;      /* card fill, as the app's TODAY box */
+  --frame: #7d82d8;      /* lavender pixel border */
+  --ink: #eceefc;        /* body text */
+  --dim: #a3a7cf;        /* secondary text */
+  --cyan: #38c8ea;       /* the app's selected-tab cyan, used for actions */
+  --agree: #3fd16b;      /* "High Confidence" green, used once */
+  --display: "ForecastPixel Display", "Courier New", ui-monospace, monospace;
+  --pixel: "ForecastPixel", "Courier New", ui-monospace, monospace;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--sky); color: var(--ink); font: 400 1.0625rem/1.6 var(--body); }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(var(--dim) 1px, transparent 1px); background-size: 46px 46px; background-position: 7px 11px; }
+.wrap { position: relative; max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+a { color: var(--cyan); }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.label { font: 400 .8125rem/1 var(--pixel); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+
+header { display: flex; align-items: center; gap: 12px; padding-block: 22px; }
+header img { width: 40px; height: 40px; image-rendering: pixelated; border-radius: 9px; }
+header span { font: 1.15rem/1 var(--display); letter-spacing: .04em; }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 48px; align-items: center; padding-block: 28px 64px; }
+.hero h1 { font: 400 clamp(2.4rem, 6vw, 4.1rem)/1.05 var(--display); margin: 14px 0 20px; text-wrap: balance; letter-spacing: .01em; }
+.hero p { color: var(--dim); max-width: 34em; margin: 0 0 28px; font-size: 1.15rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.btn { display: inline-block; font: 1rem/1 var(--pixel); letter-spacing: .06em; text-decoration: none; color: var(--sky); background: var(--cyan);
+  padding: 16px 22px; border: 0; box-shadow: 4px 4px 0 var(--frame); transition: transform .12s, box-shadow .12s; }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--frame); }
+.btn[aria-disabled="true"] { background: var(--panel); color: var(--dim); box-shadow: 4px 4px 0 var(--panel); outline: 1px solid var(--frame); pointer-events: none; }
+.cta small { color: var(--dim); font-size: .9rem; }
+.phone { justify-self: center; width: min(100%, 300px); border: 3px solid var(--frame); border-radius: 34px; overflow: hidden; background: var(--panel); box-shadow: 10px 10px 0 rgba(0,0,0,.35); }
+.phone img { display: block; width: 100%; }
+
+.alerts { padding-block: 24px 72px; }
+.alerts h2, .features h2, .watch h2, .beta h2 { font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--display); margin: 10px 0 10px; text-wrap: balance; }
+.alerts > p { color: var(--dim); margin: 0 0 24px; max-width: 40em; }
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.strip figure { margin: 0; border: 2px solid var(--frame); background: var(--panel); }
+.strip img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; image-rendering: pixelated; }
+.strip figcaption { font: .8125rem/1 var(--pixel); letter-spacing: .06em; color: var(--dim); padding: 10px 12px; }
+
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding-block: 8px 72px; }
+.features > div { border: 2px solid var(--frame); background: var(--panel); padding: 22px 22px 24px; min-width: 0; }
+.features h2 { font-size: 1.35rem; }
+.features ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; color: var(--ink); }
+.features li { padding-left: 18px; position: relative; }
+.features li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; background: var(--cyan); }
+.spread { display: flex; align-items: center; gap: 10px; margin: 2px 0 14px; font: .85rem/1 var(--pixel); color: var(--agree); }
+.spread i { display: block; height: 8px; background: var(--agree); }
+
+.watch { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: 40px; align-items: center; padding-block: 8px 72px; }
+.watch img { width: 100%; max-width: 240px; display: block; justify-self: center; border: 3px solid var(--frame); border-radius: 44px; }
+.watch p { color: var(--dim); max-width: 36em; margin: 0; }
+
+.beta { border-top: 2px dashed var(--frame); padding-block: 56px 40px; display: grid; gap: 16px; justify-items: start; }
+.beta p { color: var(--dim); margin: 0; max-width: 38em; }
+footer { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-block: 28px 40px; color: var(--dim); font-size: .9rem; border-top: 1px solid var(--panel); }
+footer a { color: var(--dim); }
+footer .grow { flex: 1 1 auto; }
+
+@media (max-width: 820px) {
+  .hero, .watch { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .features { grid-template-columns: minmax(0, 1fr); }
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <img src="assets/icon.png" alt="" width="40" height="40">
+    <span>ForecastSpread</span>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="label">Weather for iPhone and Apple Watch</div>
+      <h1>Your weather, as a living town.</h1>
+      <p>Rain brings out the umbrellas, snow builds a snowman, and storms flash over the rooftops. Underneath the pixel art is a serious forecast: up to 17 weather models side by side, so you can see when they agree.</p>
+      <div class="cta">
+        <a class="btn" id="beta-link" href="#beta">Join the free beta</a>
+        <small>iPhone, iOS 18 or later</small>
+      </div>
+    </div>
+    <div class="phone"><img src="assets/shot-rain.jpg" alt="ForecastSpread showing a rainy night over a pixel-art town, 75 degrees, models range 70 to 80, High Confidence" width="540" height="1104"></div>
+  </section>
+
+  <section class="alerts">
+    <div class="label">Notifications</div>
+    <h2>Every alert gets its own scene.</h2>
+    <p>Rain on the way, a cold front, a storm warning: each notification arrives with hand-made pixel art. Long-press it and the scene moves.</p>
+    <div class="strip">
+      <figure><img src="assets/alert_rain_soon.gif" alt="Animated pixel art of rain arriving" loading="lazy"><figcaption>Rain soon</figcaption></figure>
+      <figure><img src="assets/alert_storm.gif" alt="Animated pixel art of lightning over a field" loading="lazy"><figcaption>Storm</figcaption></figure>
+      <figure><img src="assets/alert_cold_front.gif" alt="Animated pixel art of a cold front" loading="lazy"><figcaption>Cold front</figcaption></figure>
+      <figure><img src="assets/alert_snow_soon.gif" alt="Animated pixel art of snow falling" loading="lazy"><figcaption>Snow soon</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="features" aria-label="Features">
+    <div>
+      <div class="label">The town</div>
+      <h2>It knows what season it is.</h2>
+      <ul>
+        <li>Scenes for sun, fog, rain, storms, snow, hail, dust and smoke, day and night</li>
+        <li>Seasonal trees, pumpkins in October, lights in December</li>
+        <li>Home and Lock Screen widgets and Live Activities</li>
+      </ul>
+    </div>
+    <div>
+      <div class="label">The forecast</div>
+      <h2>See how sure it is.</h2>
+      <div class="spread" aria-hidden="true"><i style="width:62%"></i>9/10 agree</div>
+      <ul>
+        <li>Spread bars show where the models agree and where they split</li>
+        <li>Track this day: get told when a trip or game day forecast changes</li>
+        <li>Outdoor Windows finds the best stretches of your week</li>
+      </ul>
+    </div>
+    <div>
+      <div class="label">The map</div>
+      <h2>Radar, now and next.</h2>
+      <ul>
+        <li>Live radar, satellite and lightning</li>
+        <li>Future rain from HRRR, GFS and ECMWF</li>
+        <li>Warnings, SPC and WPC outlooks, forecaster discussions, hurricane cones and wildfires</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="watch">
+    <img src="assets/shot-watch.jpg" alt="Apple Watch showing 66 degrees in Boulder, models 68 over 64, 9 of 10 agree, and a severe thunderstorm warning" width="422" height="514" loading="lazy">
+    <div>
+      <div class="label">Apple Watch</div>
+      <h2>A full app on your wrist.</h2>
+      <p>The same town, hourly and daily forecasts, model agreement and warnings, with complications for your watch face.</p>
+    </div>
+  </section>
+
+  <section class="beta" id="beta">
+    <div class="label">Beta</div>
+    <h2>Try it before launch.</h2>
+    <p>The beta is free through Apple's TestFlight app. Beta testers get every feature, including the deep tools for weather nerds. No ads, and no data collected.</p>
+    <a class="btn" id="beta-link-2" href="#beta">Join the free beta</a>
+  </section>
+
+  <footer>
+    <span class="grow">ForecastSpread. Weather data by Open-Meteo and official sources.</span>
+    <a href="privacy/">Privacy Policy</a>
+    <a href="support/">Support</a>
+  </footer>
+</div>
+
+<script>
+  // Set to the public TestFlight link once Apple approves the external beta.
+  const TESTFLIGHT_URL = "";
+  for (const id of ["beta-link", "beta-link-2"]) {
+    const a = document.getElementById(id);
+    if (TESTFLIGHT_URL) { a.href = TESTFLIGHT_URL; a.rel = "noopener"; }
+    else if (id === "beta-link-2") { a.textContent = "Beta opens soon"; a.setAttribute("aria-disabled", "true"); }
+  }
+</script>
+</body>
+</html>
