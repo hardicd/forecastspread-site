@@ -48,7 +48,14 @@ header span { font: 1.15rem/1 var(--display); letter-spacing: .04em; }
 .btn[aria-disabled="true"] { background: var(--panel); color: var(--dim); box-shadow: 4px 4px 0 var(--panel); outline: 1px solid var(--frame); pointer-events: none; }
 .cta small { color: var(--dim); font-size: .9rem; }
 .phone { justify-self: center; width: min(100%, 300px); border: 3px solid var(--frame); border-radius: 34px; overflow: hidden; background: var(--panel); box-shadow: 10px 10px 0 rgba(0,0,0,.35); }
-.phone img { display: block; width: 100%; height: auto; }
+.phone img, .phone video { display: block; width: 100%; height: auto; }
+.phone.small { width: 100%; max-width: 230px; border-radius: 26px; box-shadow: 6px 6px 0 rgba(0,0,0,.35); }
+.motion { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-block: 8px 72px; }
+.motion figure { margin: 0; display: grid; gap: 12px; justify-items: center; }
+.motion figcaption, .longpress figcaption { font: .8125rem/1.3 var(--pixel); letter-spacing: .06em; color: var(--dim); text-align: center; }
+.longpress { margin: 0 0 18px; display: grid; gap: 10px; max-width: 560px; }
+.longpress video { display: block; width: 100%; height: auto; border: 2px solid var(--frame); border-radius: 18px; }
+.longpress figcaption { text-align: left; }
 
 .alerts { padding-block: 24px 72px; }
 .alerts h2, .features h2, .watch h2, .beta h2 { font: 400 clamp(1.5rem, 3vw, 2rem)/1.2 var(--display); margin: 10px 0 10px; text-wrap: balance; }
@@ -68,7 +75,7 @@ header span { font: 1.15rem/1 var(--display); letter-spacing: .04em; }
 .spread i { display: block; height: 8px; background: var(--agree); }
 
 .watch { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: 40px; align-items: center; padding-block: 8px 72px; }
-.watch img { width: 100%; max-width: 240px; height: auto; display: block; justify-self: center; border: 3px solid var(--frame); border-radius: 44px; }
+.watch video { width: 100%; max-width: 240px; height: auto; display: block; justify-self: center; border: 3px solid var(--frame); border-radius: 44px; }
 .watch p { color: var(--dim); max-width: 36em; margin: 0; }
 
 .beta { border-top: 2px dashed var(--frame); padding-block: 56px 40px; display: grid; gap: 16px; justify-items: start; }
@@ -81,6 +88,7 @@ footer .grow { flex: 1 1 auto; }
   .hero, .watch { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .features { grid-template-columns: minmax(0, 1fr); }
   .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .motion { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
 </style>
@@ -103,19 +111,29 @@ footer .grow { flex: 1 1 auto; }
         <small>iPhone, iOS 18 or later</small>
       </div>
     </div>
-    <div class="phone"><img src="assets/shot-rain.jpg" alt="ForecastSpread showing a rainy night over a pixel-art town, 75 degrees, models range 70 to 80, High Confidence" width="540" height="1104"></div>
+    <div class="phone"><video src="assets/reel-town.mp4" poster="assets/reel-town.jpg" autoplay muted loop playsinline aria-label="The ForecastSpread town changing with the weather: sun, rain with umbrellas, a night storm, Halloween, snow with a snowman, July 4th fireworks"></video></div>
   </section>
 
   <section class="alerts">
     <div class="label">Notifications</div>
     <h2>Every alert gets its own scene.</h2>
     <p>Rain on the way, a cold front, a storm warning: each notification arrives with hand-made pixel art. Long-press it and the scene moves.</p>
+    <figure class="longpress">
+      <video src="assets/reel-longpress.mp4" poster="assets/reel-longpress.jpg" autoplay muted loop playsinline aria-label="A ForecastSpread morning summary notification, long-pressed on an iPhone, with an animated pixel sunrise over a porch"></video>
+      <figcaption>Long-press on a real iPhone: the morning summary.</figcaption>
+    </figure>
     <div class="strip">
       <figure><img src="assets/alert_rain_soon.gif" alt="Animated pixel art of rain arriving" loading="lazy"><figcaption>Rain soon</figcaption></figure>
       <figure><img src="assets/alert_storm.gif" alt="Animated pixel art of lightning over a field" loading="lazy"><figcaption>Storm</figcaption></figure>
       <figure><img src="assets/alert_cold_front.gif" alt="Animated pixel art of a cold front" loading="lazy"><figcaption>Cold front</figcaption></figure>
       <figure><img src="assets/alert_snow_soon.gif" alt="Animated pixel art of snow falling" loading="lazy"><figcaption>Snow soon</figcaption></figure>
     </div>
+  </section>
+
+  <section class="motion" aria-label="The app in motion">
+    <figure><div class="phone small"><video src="assets/reel-spread.mp4" poster="assets/reel-spread.jpg" autoplay muted loop playsinline aria-label="The hourly spread chart zooming from one day out to the whole forecast"></video></div><figcaption>Pinch from one day to the whole range</figcaption></figure>
+    <figure><div class="phone small"><video src="assets/reel-radar.mp4" poster="assets/reel-radar.jpg" autoplay muted loop playsinline aria-label="Live radar playing over storms"></video></div><figcaption>Live radar, playing</figcaption></figure>
+    <figure><div class="phone small"><video src="assets/reel-models.mp4" poster="assets/reel-models.jpg" autoplay muted loop playsinline aria-label="Rain maps switching from HRRR to GFS to ECMWF"></video></div><figcaption>HRRR, GFS and ECMWF rain maps</figcaption></figure>
   </section>
 
   <section class="features" aria-label="Features">
@@ -150,7 +168,7 @@ footer .grow { flex: 1 1 auto; }
   </section>
 
   <section class="watch">
-    <img src="assets/shot-watch-rain.jpg" alt="Apple Watch in the rain showing 66 degrees in Boulder, models 68 over 64, 9 of 10 agree" width="422" height="514" loading="lazy">
+    <video src="assets/reel-watch.mp4" poster="assets/reel-watch.jpg" autoplay muted loop playsinline aria-label="Apple Watch showing the town in rain, then scrolling to What's changing"></video>
     <div>
       <div class="label">Apple Watch</div>
       <h2>A full app on your wrist.</h2>
