@@ -16,29 +16,32 @@ a { color:var(--cyan); overflow-wrap:anywhere; }
 ul { padding-left:1.2em; } li { margin:6px 0; }
 code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="../assets/atkinson-hyperlegible.css">
 </head><body><main>
 <nav><a href="../"><img src="../assets/icon.png" alt="">ForecastSpread</a></nav>
 <h1>ForecastSpread Privacy Policy</h1>
-<p class="date">Updated 28 September 2026</p>
+<p class="date">Updated 6 October 2026</p>
 <h2>The short version</h2>
-<p>ForecastSpread has no accounts, no ads, no analytics and no tracking. The developer receives nothing about you unless you send a problem report or feedback yourself.</p>
+<p>ForecastSpread has no accounts, no ads, no analytics and no tracking. The developer keeps nothing about you: the app's relay passes weather requests on without storing them, and the developer only hears from you if you send a problem report or feedback yourself.</p>
 <h2>Your location</h2>
 <p>If you allow it, the app reads your location while it's open to show the weather where you are. It never reads your location in the background.</p>
 <p>Your current location and saved places stay on your iPhone. The app's widgets and your Apple Watch get them from the app, on your own devices.</p>
 <h2>Weather services</h2>
 <p>To fetch weather, the app sends the coordinates of the place you're looking at, or the words of a place search, to the services that make the data:</p>
 <ul>
-<li>Open-Meteo: forecast models, history, air quality, marine and place search</li>
+<li>Open-Meteo, through the ForecastSpread relay below: forecast models, history, air quality, marine and place search</li>
 <li>US National Weather Service and NOAA: alerts, station and airport readings, map layers and hurricane forecasts</li>
-<li>Iowa Environmental Mesonet: radar and outlook maps</li>
+<li>Iowa Environmental Mesonet: the latest satellite picture when NOAA's satellite loop is unavailable</li>
 <li>MeteoAlarm: European warnings (it receives only which country's list to download)</li>
 <li>Environment and Climate Change Canada: Canadian warnings (it receives a small area around places in or near Canada)</li>
 <li>Esri ArcGIS: the wildfire map</li>
-<li>Amazon Web Services (NOAA's and ECMWF's open data): GOES satellite lightning files, HRRR forecast cloud pictures and the HRRR, GFS and ECMWF rain totals on the map (it receives no location, only which files to send)</li>
+<li>Amazon Web Services (NOAA's and ECMWF's open data): GOES satellite lightning files, HRRR future radar and forecast cloud pictures, and the HRRR, GFS and ECMWF rain totals on the map (it receives no location, only which files to send)</li>
 <li>Apple Maps: the map itself and place names</li>
 </ul>
 <p>Like any website, these services also see your IP address. Each handles requests under its own privacy policy. The widgets and background refresh fetch weather for your places the same way.</p>
+<h2>The ForecastSpread relay</h2>
+<p>Requests to Open-Meteo go through ForecastSpread's own relay, a small server the developer runs on Cloudflare. It adds the app's Open-Meteo access and limits how often each phone can ask. The relay sees what Open-Meteo sees: the coordinates or search words and your IP address. It passes each request on without storing or logging it, and its request counts last about a minute.</p>
+<p>So that only the real app can use the relay, the iPhone app proves itself with Apple's App Attest. This makes a random key on your iPhone, and the relay keeps that key's public half, a counter and the dates it was made and last checked. The key isn't tied to your name, Apple Account, places or weather requests. Deleting the app deletes the key from your iPhone. Cloudflare runs the server under its own privacy policy.</p>
 <h2>On your iPhone</h2>
 <p>Settings, saved places, cached forecasts and forecast-checking history are stored on your iPhone. Deleting the app deletes them.</p>
 <p>Notifications are planned on your iPhone too. No server knows your places or when to alert you.</p>
@@ -49,6 +52,8 @@ code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 <h2>Crash and hang reports</h2>
 <p>When the app crashes, freezes or is closed by iOS, iOS gives the app a report through Apple's MetricKit. The app keeps the last few on your iPhone for up to 30 days. A report says where in the app's code it stopped, with the iOS version and device model. It holds no places, forecasts or account details. Reports leave your iPhone only if you attach them to a problem report or share them from Support.</p>
 <p>Separately, if you share analytics with app developers in the iOS Settings app, Apple may send crash reports to the developer through App Store Connect.</p>
+<h2>This website</h2>
+<p>This website is hosted on GitHub Pages and loads nothing from other sites. It has no cookies, analytics or sign-up forms. GitHub sees visitors' IP addresses to serve the pages and handles them under its own privacy policy.</p>
 <h2>Children</h2>
 <p>ForecastSpread doesn't collect personal information from anyone, including children.</p>
 <h2>Changes</h2>
