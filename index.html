@@ -190,8 +190,8 @@ footer .grow { flex: 1 1 auto; }
 </div>
 
 <script>
-  // Set to the public TestFlight link once Apple approves the external beta.
-  const TESTFLIGHT_URL = "";
+  // The public TestFlight link for the "Public beta" group (200-tester limit).
+  const TESTFLIGHT_URL = "https://testflight.apple.com/join/mXdFYaRA";
   for (const id of ["beta-link", "beta-link-2"]) {
     const a = document.getElementById(id);
     if (TESTFLIGHT_URL) { a.href = TESTFLIGHT_URL; a.rel = "noopener"; }
