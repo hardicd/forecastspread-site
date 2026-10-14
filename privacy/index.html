@@ -20,7 +20,7 @@ code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 </head><body><main>
 <nav><a href="../"><img src="../assets/icon.png" alt="">ForecastSpread</a></nav>
 <h1>ForecastSpread Privacy Policy</h1>
-<p class="date">Updated 10 October 2026</p>
+<p class="date">Updated 14 October 2026</p>
 <h2>The short version</h2>
 <p>ForecastSpread has no accounts, no ads, no analytics and no tracking. The developer keeps nothing about you: the app's relay passes weather requests on without storing them, and the developer only hears from you if you send a problem report or feedback yourself.</p>
 <h2>Your location</h2>
@@ -41,7 +41,7 @@ code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 <p>Like any website, these services also see your IP address. Each handles requests under its own privacy policy. The widgets and background refresh fetch weather for your places the same way.</p>
 <h2>The ForecastSpread relay</h2>
 <p>Requests to Open-Meteo go through ForecastSpread's own relay, a small server the developer runs on Cloudflare. It adds the app's Open-Meteo access and limits how often each phone can ask. The relay sees what Open-Meteo sees: the coordinates or search words and your IP address. It passes each request on without storing or logging it, and its request counts last about a minute.</p>
-<p>So that only the real app can use the relay, the iPhone app proves itself with Apple's App Attest. This makes a random key on your iPhone, and the relay keeps that key's public half, a counter and the dates it was made and last checked. The key isn't tied to your name, Apple Account, places or weather requests. Deleting the app deletes the key from your iPhone. Cloudflare runs the server under its own privacy policy.</p>
+<p>So the relay can tell the real app from other traffic, the iPhone app proves itself with Apple's App Attest. Requests without that proof are still answered, under a stricter limit. App Attest makes a random key on your iPhone, and the relay keeps that key's public half, a counter and the dates it was made and last checked. The key isn't tied to your name, Apple Account, places or weather requests. Deleting the app deletes the key from your iPhone. Cloudflare runs the server under its own privacy policy.</p>
 <h2>On your iPhone</h2>
 <p>Settings, saved places, cached forecasts and forecast-checking history are stored on your iPhone. Deleting the app deletes them.</p>
 <p>Notifications are planned on your iPhone too. No server knows your places or when to alert you.</p>
