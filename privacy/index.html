@@ -20,7 +20,7 @@ code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 </head><body><main>
 <nav><a href="../"><img src="../assets/icon.png" alt="">ForecastSpread</a></nav>
 <h1>ForecastSpread Privacy Policy</h1>
-<p class="date">Updated 14 October 2026</p>
+<p class="date">Updated 24 October 2026</p>
 <h2>The short version</h2>
 <p>ForecastSpread has no accounts, no ads, no analytics and no tracking. The developer keeps nothing about you: the app's relay passes weather requests on without storing them, and the developer only hears from you if you send a problem report or feedback yourself.</p>
 <h2>Your location</h2>
@@ -52,6 +52,18 @@ code { font-size:.9em; background:var(--panel); padding:1px 5px; }
 <h2>Crash and hang reports</h2>
 <p>When the app crashes, freezes or is closed by iOS, iOS gives the app a report through Apple's MetricKit. The app keeps the last few on your iPhone for up to 30 days. A report says where in the app's code it stopped, with the iOS version and device model. It holds no places, forecasts or account details. Reports leave your iPhone only if you attach them to a problem report or share them from Support.</p>
 <p>Separately, if you share analytics with app developers in the iOS Settings app, Apple may send crash reports to the developer through App Store Connect.</p>
+<h2>The Android app</h2>
+<p>The Android app follows the same rules, with these differences:</p>
+<ul>
+<li><strong>Location.</strong> If you allow it, Android's location service finds where you are while the app is open, approximately or precisely as you choose. The app rounds that position on your phone to about 1 km (0.6 miles) before using it, so it never sends your exact position anywhere. It never reads your location in the background. The name of the town you're in is worked out on your phone, from a list of towns built into the app.</li>
+<li><strong>Weather services.</strong> The Android app uses the same weather services as the iPhone app and sends them the same things. Its requests to Open-Meteo, the US National Weather Service (including its Aviation Weather Center), MeteoAlarm and Environment and Climate Change Canada all go through the ForecastSpread relay, which passes them on without your IP address, so those services see the relay's address, never yours. The relay may keep a service's answer in memory for a few minutes so the next phone asking the same thing gets it sooner.</li>
+<li><strong>The map.</strong> The map's pictures come straight from NOAA, the Iowa Environmental Mesonet, Esri ArcGIS and Amazon Web Services (NOAA's and ECMWF's open data), not through the relay. They receive only which part of the map to draw, or which files to send, and your IP address, as any website does. The picture of the Earth under the weather is NASA's Blue Marble, from NASA's GIBS service. The Android app uses no Apple or Google map.</li>
+<li><strong>The relay.</strong> Android has no App Attest, so the Android app's requests always use the relay's stricter limit for requests without proof. The relay keeps no key or anything else for them.</li>
+<li><strong>On your phone.</strong> Your saved places, settings and cached forecasts are stored on your phone, and deleting the app deletes them. If Android backup is on, Android may include them in your phone's backup to your Google Account, under Google's privacy policy. The home-screen widgets and notifications are planned on your phone too, so no server knows your places or when to alert you. The background refresh fetches weather and alerts for your saved places the same way, without reading your location in the background.</li>
+<li><strong>Purchases.</strong> The Android beta has no purchases; test builds include every feature. If subscriptions come to Android, Google Play will handle them, and the app will only learn which plan is active.</li>
+<li><strong>Crash reports.</strong> The Android app has no crash-reporting or analytics code. If you let your phone share usage and diagnostics, Google may send crash reports to the developer through Google Play Console.</li>
+<li><strong>Problem reports and feedback.</strong> Report a problem opens an email with the app version and build, phone model, Android version, plan, language and time zone filled in. Send feedback opens an email with only the app version and build and your plan filled in. Nothing is sent until you send it from your mail app, and you can change it first. You can also write to <span class="mail">contact@bayoubytes.dev</span>.</li>
+</ul>
 <h2>This website</h2>
 <p>This website is hosted on GitHub Pages and loads nothing from other sites. It has no cookies, analytics or sign-up forms. GitHub sees visitors' IP addresses to serve the pages and handles them under its own privacy policy.</p>
 <h2>Children</h2>
