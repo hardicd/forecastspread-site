@@ -179,7 +179,7 @@ footer .grow { flex: 1 1 auto; }
   <section class="beta" id="beta">
     <div class="label">Beta</div>
     <h2>Try it before launch.</h2>
-    <p>The beta is free. On iPhone it runs through Apple's TestFlight app, and testers get every feature, including the deep tools for weather nerds. On Android it runs through Google Play; that version is newer and still catching up. No ads, and no data collected.</p>
+    <p>The beta is free. On iPhone it runs through Apple's TestFlight app, and on Android through Google Play. Testers get every feature, including the deep tools for weather nerds. No ads, and no data collected.</p>
     <div class="cta">
       <a class="btn" id="beta-link-2" href="#beta">Join the iPhone beta</a>
       <a class="btn" id="android-link-2" href="#beta">Join the Android beta</a>
@@ -196,8 +196,8 @@ footer .grow { flex: 1 1 auto; }
 <script>
   // The public TestFlight link for the "Public beta" group (200-tester limit).
   const TESTFLIGHT_URL = "https://testflight.apple.com/join/mXdFYaRA";
-  // The Google Play testing link for the Android beta. Empty until the testing track is live.
-  const ANDROID_BETA_URL = "";
+  // The Google Play open testing link for the Android beta.
+  const ANDROID_BETA_URL = "https://play.google.com/apps/testing/com.forecastspread.android";
   const links = [
     [TESTFLIGHT_URL, ["beta-link", "beta-link-2"], "iPhone beta opens soon"],
     [ANDROID_BETA_URL, ["android-link", "android-link-2"], "Android beta opens soon"],
