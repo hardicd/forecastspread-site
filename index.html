@@ -102,12 +102,13 @@ footer .grow { flex: 1 1 auto; }
 
   <section class="hero">
     <div>
-      <div class="label">Weather for iPhone and Apple Watch</div>
+      <div class="label">Weather for iPhone, Apple Watch and Android</div>
       <h1>Your weather, as a living town.</h1>
       <p>Rain brings out the umbrellas, snow builds a snowman, and storms flash over the rooftops. Underneath the pixel art is a serious forecast: up to 17 weather models side by side, so you can see when they agree.</p>
       <div class="cta">
-        <a class="btn" id="beta-link" href="#beta">Join the free beta</a>
-        <small>iPhone, iOS 18 or later</small>
+        <a class="btn" id="beta-link" href="#beta">Join the iPhone beta</a>
+        <a class="btn" id="android-link" href="#beta">Join the Android beta</a>
+        <small>iOS 18 or later, Android 8 or later</small>
       </div>
     </div>
     <div class="phone"><video src="assets/reel-town.mp4" poster="assets/reel-town.jpg" autoplay muted loop playsinline aria-label="The ForecastSpread town changing with the weather: sun, rain with umbrellas, a night storm, Halloween, snow with a snowman, July 4th fireworks"></video></div>
@@ -178,8 +179,11 @@ footer .grow { flex: 1 1 auto; }
   <section class="beta" id="beta">
     <div class="label">Beta</div>
     <h2>Try it before launch.</h2>
-    <p>The beta is free through Apple's TestFlight app. Beta testers get every feature, including the deep tools for weather nerds. No ads, and no data collected.</p>
-    <a class="btn" id="beta-link-2" href="#beta">Join the free beta</a>
+    <p>The beta is free. On iPhone it runs through Apple's TestFlight app, and on Android through Google Play. Testers get every feature, including the deep tools for weather nerds. No ads, and no data collected.</p>
+    <div class="cta">
+      <a class="btn" id="beta-link-2" href="#beta">Join the iPhone beta</a>
+      <a class="btn" id="android-link-2" href="#beta">Join the Android beta</a>
+    </div>
   </section>
 
   <footer>
@@ -192,10 +196,18 @@ footer .grow { flex: 1 1 auto; }
 <script>
   // The public TestFlight link for the "Public beta" group (200-tester limit).
   const TESTFLIGHT_URL = "https://testflight.apple.com/join/mXdFYaRA";
-  for (const id of ["beta-link", "beta-link-2"]) {
-    const a = document.getElementById(id);
-    if (TESTFLIGHT_URL) { a.href = TESTFLIGHT_URL; a.rel = "noopener"; }
-    else if (id === "beta-link-2") { a.textContent = "Beta opens soon"; a.setAttribute("aria-disabled", "true"); }
+  // The Google Play open testing link for the Android beta.
+  const ANDROID_BETA_URL = "https://play.google.com/apps/testing/com.forecastspread.android";
+  const links = [
+    [TESTFLIGHT_URL, ["beta-link", "beta-link-2"], "iPhone beta opens soon"],
+    [ANDROID_BETA_URL, ["android-link", "android-link-2"], "Android beta opens soon"],
+  ];
+  for (const [url, ids, soon] of links) {
+    for (const id of ids) {
+      const a = document.getElementById(id);
+      if (url) { a.href = url; a.rel = "noopener"; }
+      else { a.textContent = soon; a.setAttribute("aria-disabled", "true"); a.removeAttribute("href"); }
+    }
   }
 </script>
 </body>
